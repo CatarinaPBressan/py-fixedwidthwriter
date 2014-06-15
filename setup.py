@@ -4,7 +4,7 @@ from distutils.core import setup
 setup(
     name='fixedwidthwriter',
     packages=['fixedwidthwriter'],  # this must be the same as the name above
-    version='0.0.1',
+    version='0.0.3',
     description='A class to write fixed-width files with an interface similar to python`s csv writer',
     author='Arthur Bressan',
     author_email='arthurpbressan@gmail.com',
