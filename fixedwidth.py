@@ -1,9 +1,17 @@
 from decimal import Decimal
+
+
 class FixedWidthWriter():
 
-    def __init__(self, fd, fields):
+    def __init__(self, fd, fields, line_ending='linux'):
         self.fd = fd
         self.fields = fields
+        if line_ending == 'linux':
+            self.line_ending = '\n'
+        elif line_ending == 'windows':
+            self.line_ending = '\r\n'
+        else:
+            raise ValueError('Only windows or linux line endings supported')
 
     def writerow(self, rowdict):
         _row = []
@@ -22,7 +30,7 @@ class FixedWidthWriter():
                 .format(_value, _options.get('direction', '<'), _width)
             _row.append(_part)
         _row = ''.join(_row)
-        self.fd.write(_row + '\n')
+        self.fd.write(_row + self.line_ending)
 
     def writerows(self, rowdicts):
         for rowdict in rowdicts:
