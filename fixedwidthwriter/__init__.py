@@ -31,7 +31,7 @@ class FixedWidthWriter():
                 .format(value, options.get('direction', '<'), width)
             row.append(part)
         row = ''.join(row)
-        self.fd.write(row + self.line_ending)
+        self.fd.write(row + self.line_endings)
 
     def writerows(self, rowdicts):
         for rowdict in rowdicts:
