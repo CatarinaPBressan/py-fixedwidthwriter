@@ -18,8 +18,8 @@ class FixedWidthWriter():
                 key, width = field
                 options = {}
             value = rowdict[key]
-            decimal_spaces = options.get('decimal_spaces', 0)
-            if decimal_spaces:
+            decimal_spaces = options.get('decimal_spaces')
+            if decimal_spaces >= 0:
                 value = Decimal(value).quantize(Decimal(10)**-decimal_spaces)
             value = unicode(value)  # forcing the value to be a string so we can easily check its length
             if len(value) > width:
