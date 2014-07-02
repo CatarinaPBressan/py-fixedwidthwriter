@@ -15,23 +15,23 @@ class FixedWidthWriter():
             raise ValueError('Only windows or linux line endings supported')
 
     def writerow(self, rowdict):
-        _row = []
+        row = []
         for field in self.fields:
             try:
-                _key, _width, _options = field
+                key, width, options = field
             except ValueError:
-                _key, _width = field
-                _options = {}
-            _value = rowdict[_key]
-            _decimal_spaces = _options.get('decimal_spaces', 0)
-            if _decimal_spaces:
-                _value = unicode(Decimal(_value)
-                                 .quantize(Decimal(10)**-_decimal_spaces))
-            _part = '{0: {1}{2}}' \
-                .format(_value, _options.get('direction', '<'), _width)
-            _row.append(_part)
-        _row = ''.join(_row)
-        self.fd.write(_row + self.line_ending)
+                key, width = field
+                options = {}
+            value = rowdict[key]
+            decimal_spaces = options.get('decimal_spaces', 0)
+            if decimal_spaces:
+                value = unicode(Decimal(value)
+                                .quantize(Decimal(10)**-decimal_spaces))
+            part = '{0: {1}{2}}' \
+                .format(value, options.get('direction', '<'), width)
+            row.append(part)
+        row = ''.join(row)
+        self.fd.write(row + self.line_ending)
 
     def writerows(self, rowdicts):
         for rowdict in rowdicts:
