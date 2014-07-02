@@ -7,6 +7,7 @@ class FixedWidthWriter():
     def __init__(self, fd, fields, lineterminator='\r\n'):
         self.fd = fd
         self.fields = fields
+        self.lineterminator = lineterminator
 
     def writerow(self, rowdict):
         row = []
