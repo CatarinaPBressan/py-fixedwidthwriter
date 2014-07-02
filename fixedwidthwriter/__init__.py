@@ -4,13 +4,13 @@ from decimal import Decimal
 
 class FixedWidthWriter():
 
-    def __init__(self, fd, fields, line_ending='linux'):
+    def __init__(self, fd, fields, line_endings='linux'):
         self.fd = fd
         self.fields = fields
-        if line_ending == 'linux':
-            self.line_ending = '\n'
-        elif line_ending == 'windows':
-            self.line_ending = '\r\n'
+        if line_endings == 'linux':
+            self.line_endings = '\n'
+        elif line_endings == 'windows':
+            self.line_endings = '\r\n'
         else:
             raise ValueError('Only windows or linux line endings supported')
 
