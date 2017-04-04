@@ -27,7 +27,7 @@ class FixedWidthWriter():
             if len(value) > width:
                 raise ValueError('Value {0} is too wide to fit in column {1}.'
                                  .format(value, key))
-            part = '{0: {1}{2}}' \
+            part = u'{0: {1}{2}}' \
                 .format(value, options.get('direction', '<'), width)
             row.append(part)
         row = ''.join(row)

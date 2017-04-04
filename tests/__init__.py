@@ -28,11 +28,11 @@ class TestFixedWidthWriter(TestCase):
         fww = FixedWidthWriter(self.s, cols)
         fww.writerows(self.objs)
 
-        lines = self.s.splitlines()
+        lines = self.s.getvalue()
 
-        self.assertIn('0 Jack     100.50', lines)
-        self.assertIn('1 Mary     100.00', lines)
-        self.assertIn('2 João     100.25', lines)
+        self.assertIn(u'0 Jack     100.50', lines)
+        self.assertIn(u'1 Mary     100.00', lines)
+        self.assertIn(u'2 João     100.25', lines)
 
     def test_fixed_width_writer_direction(self):
         cols = [
@@ -44,11 +44,11 @@ class TestFixedWidthWriter(TestCase):
         fww = FixedWidthWriter(self.s, cols)
         fww.writerows(self.objs)
 
-        lines = self.s.splitlines()
+        lines = self.s.getvalue()
 
-        self.assertIn('0 Jack 100.50    ', lines)
-        self.assertIn('1 Mary 100.00    ', lines)
-        self.assertIn('2 João 100.25    ', lines)
+        self.assertIn(u'0 Jack 100.50    ', lines)
+        self.assertIn(u'1 Mary 100.00    ', lines)
+        self.assertIn(u'2 João 100.25    ', lines)
 
     def test_fixed_width_writer_decimals(self):
         cols = [
@@ -60,8 +60,8 @@ class TestFixedWidthWriter(TestCase):
         fww = FixedWidthWriter(self.s, cols)
         fww.writerows(self.objs)
 
-        lines = self.s.splitlines()
+        lines = self.s.getvalue()
 
-        self.assertIn('0 Jack      100.5', lines)
-        self.assertIn('1 Mary        100', lines)
-        self.assertIn('2 João     100.25', lines)
+        self.assertIn(u'0 Jack        100', lines)
+        self.assertIn(u'1 Mary        100', lines)
+        self.assertIn(u'2 João        100', lines)
