@@ -10,9 +10,10 @@ cols = [
 
 objs = [
     {'ID': 0, 'NAME': 'Jack', 'BALANCE': 100.50},
-    {'ID': 1, 'NAME': 'Mary', 'BALANCE': 100}
+    {'ID': 1, 'NAME': 'Mary', 'BALANCE': 100},
+    {'ID': 2, 'NAME': u'João', 'BALANCE': 100.25},
 ]
 
-with open('file.txt', 'wb') as fixed_file:
+with open('file.txt', 'w') as fixed_file:
     fww = FixedWidthWriter(fixed_file, cols)
     fww.writerows(objs)
