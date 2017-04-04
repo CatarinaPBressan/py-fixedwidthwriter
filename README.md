@@ -68,22 +68,4 @@ A list of dictionaries with the format accepted by `writerow`.
 Example
 ===================
 
-```python
-from fixedwidth import FixedWidthWriter
-
-cols = [
-    ('ID', 5),
-    ('NAME', 40),
-    ('BALANCE', 6, {'direction': '>', 'decimal_spaces': 2}),
-]
-
-objs = [
-    {'ID': 0, 'NAME': 'Jack', 'BALANCE': 100.50},
-    {'ID': 1, 'NAME': 'Mary', 'BALANCE': 100}
-]
-
-with open('file.txt', 'wb') as fixed_file:
-    fww = FixedWidthWriter(fixed_file, cols)
-    fww.writerows(objs)
-
-```
+Check out the tests and the file `example.py` for examples on how to use the features.

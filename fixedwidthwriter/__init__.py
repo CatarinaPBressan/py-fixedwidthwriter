@@ -3,6 +3,8 @@ from __future__ import absolute_import
 
 from decimal import Decimal
 
+import six
+
 
 class FixedWidthWriter():
 
@@ -21,9 +23,9 @@ class FixedWidthWriter():
                 options = {}
             value = rowdict[key]
             decimal_spaces = options.get('decimal_spaces')
-            if decimal_spaces >= 0:
+            if decimal_spaces and decimal_spaces >= 0:
                 value = Decimal(value).quantize(Decimal(10)**-decimal_spaces)
-            value = unicode(value)  # forcing the value to be a string so we can easily check its length
+            value = six.text_type(value)
             if len(value) > width:
                 raise ValueError('Value {0} is too wide to fit in column {1}.'
                                  .format(value, key))
@@ -31,6 +33,8 @@ class FixedWidthWriter():
                 .format(value, options.get('direction', '<'), width)
             row.append(part)
         row = ''.join(row)
+        if six.PY2:
+            row = row.encode('utf-8')
         self.fd.write(row + self.lineterminator)
 
     def writerows(self, rowdicts):
