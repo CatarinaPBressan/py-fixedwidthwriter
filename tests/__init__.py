@@ -3,7 +3,11 @@ from __future__ import absolute_import
 
 from unittest import TestCase
 
-from StringIO import StringIO
+import six
+if six.PY2:
+    from StringIO import StringIO
+else:
+    from io import StringIO
 
 from fixedwidthwriter import FixedWidthWriter
 
